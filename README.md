@@ -378,8 +378,9 @@ void Floresta::andarAnimal()
 ```
 </details>
 
-- Prioridade explícita de escolhas garante comportamento previsível.  
-- “Tempo em seguro” evita que o animal se mova inutilmente em células vazias eternamente.
+- Segue a prioridade 4>0>1>3 .
+- Atualiza as celulas ao redor do animal para 1 quando encontra uma celula com agua.
+- Conta o numero de passos do animal.
 
 ---
 
