@@ -43,7 +43,7 @@ vector<std::vector<bool>> Floresta::getVisitados()
   return visitados;
 }
 
-void Floresta::espalharFogo(char vento)
+void Floresta::espalharFogo(char cima, char baixo, char esquerda, char direita)
 {
     vector<vector<int>> novaMatriz = matriz; // cópia temporária para evitar propagação incorreta
 
@@ -54,7 +54,7 @@ void Floresta::espalharFogo(char vento)
             if (matriz[i][j] == 2) 
             {
                 // Sem vento
-                if (vento == '0') 
+                if (cima == '0' && baixo == '0' && esquerda == '0' && direita == '0') 
                 {
                     if (i + 1 < linhas && matriz[i + 1][j] == 1) 
                     {
@@ -77,44 +77,43 @@ void Floresta::espalharFogo(char vento)
                         cout << "(" << i << "," << j - 1 << ") vira 2 (esquerda)" << endl;
                     }
                 }
-                // Vento para cima
-                else if (vento == 'C') 
-                {
-                    if (i - 1 >= 0 && matriz[i - 1][j] == 1) 
+                else
+                {   
+                    // Vento para direita
+                    if(direita == '1')
                     {
-                        novaMatriz[i - 1][j] = 2;
-                        cout << "(" << i - 1 << "," << j << ") vira 2 (acima)" << endl;
+                        if (j + 1 < colunas && matriz[i][j + 1] == 1) 
+                        {
+                            novaMatriz[i][j + 1] = 2;
+                            cout << "(" << i << "," << j + 1 << ") vira 2 (direita)" << endl;
+                        }
+                    }
+                    if(esquerda == '1')
+                    {
+                        if (j - 1 >= 0 && matriz[i][j - 1] == 1) 
+                        {
+                            novaMatriz[i][j - 1] = 2;
+                            cout << "(" << i << "," << j - 1 << ") vira 2 (esquerda)" << endl;
+                        }
+                    }
+                    if(cima == '1')
+                    {
+                        if (i - 1 >= 0 && matriz[i - 1][j] == 1) 
+                        {
+                            novaMatriz[i - 1][j] = 2;
+                            cout << "(" << i - 1 << "," << j << ") vira 2 (acima)" << endl;
+                        }
+                    }
+                    if(baixo == '1')
+                    {
+                        if (i + 1 < linhas && matriz[i + 1][j] == 1) 
+                        {
+                            novaMatriz[i + 1][j] = 2;
+                            cout << "(" << i + 1 << "," << j << ") vira 2 (abaixo)" << endl;
+                        }
                     }
                 }
-                // Vento para baixo
-                else if (vento == 'B') 
-                {
-                    if (i + 1 < linhas && matriz[i + 1][j] == 1) 
-                    {
-                        novaMatriz[i + 1][j] = 2;
-                        cout << "(" << i + 1 << "," << j << ") vira 2 (abaixo)" << endl;
-                    }
-                }
-                // Vento para esquerda
-                else if (vento == 'E') 
-                {
-                    if (j - 1 >= 0 && matriz[i][j - 1] == 1) 
-                    {
-                        novaMatriz[i][j - 1] = 2;
-                        cout << "(" << i << "," << j - 1 << ") vira 2 (esquerda)" << endl;
-                    }
-                }
-                // Vento para direita
-                else if (vento == 'D') 
-                {
-                    if (j + 1 < colunas && matriz[i][j + 1] == 1) 
-                    {
-                        novaMatriz[i][j + 1] = 2;
-                        cout << "(" << i << "," << j + 1 << ") vira 2 (direita)" << endl;
-                    }
-                }
-
-                // A árvore atual em chamas vira queimada
+             
                 novaMatriz[i][j] = 3;
             }
         }

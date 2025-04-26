@@ -10,12 +10,42 @@ void Config::setInteracoes(int interacoes)
     this->interacoes=interacoes;
 }
 
-char Config::getVento()
+char Config::getEsquerda()
 {
-    return vento;
+    return esquerda;
 }
 
-void Config::setVento(char vento)
+void Config::setEsquerda(char esquerda)
 {
-    this->vento=vento;
+    this->esquerda=esquerda;
+}
+
+char Config::getDireita()
+{
+    return direita;
+}
+
+void Config::setDireita(char direita)    
+{
+    this->direita=direita;
+}
+
+char Config::getCima()
+{
+    return cima;
+}
+
+void Config::setCima(char cima)
+{
+    this->cima=cima;
+}
+
+char Config::getBaixo()
+{
+    return baixo;
+}    
+
+void Config::setBaixo(char baixo)
+{
+    this->baixo=baixo;
 }

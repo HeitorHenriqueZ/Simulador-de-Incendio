@@ -13,13 +13,22 @@ class Config
     private:
 
     int interacoes=1000;
-    char vento='0';
+    char direita='0';
+    char esquerda='0';
+    char baixo='0';
+    char cima='0';
 
     public:
 
     int getInteracoes();
     void setInteracoes(int interacoes);
-    char getVento();
-    void setVento(char vento);
+    char getEsquerda();
+    void setEsquerda(char esquerda);
+    char getDireita();
+    void setDireita(char direita);
+    char getCima();
+    void setCima(char cima);
+    char getBaixo();
+    void setBaixo(char baixo);
 };
 #endif

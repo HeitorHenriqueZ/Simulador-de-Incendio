@@ -38,7 +38,7 @@ int main()
             for(int i=0;i<3;i++)
             {                
                 cout<<"Animal descansando"<<endl;
-                floresta->espalharFogo(config.getVento());
+                floresta->espalharFogo(config.getCima(), config.getBaixo(), config.getEsquerda(), config.getDireita());
                 funcoes.printArquivoComAnimal(floresta->getMatriz(), floresta->getAnimalX(), floresta->getAnimalY(), arquivoSaida);
                 iteracao++;
             }
@@ -47,7 +47,7 @@ int main()
         {
             streambuf* originalCoutBuffer = cout.rdbuf(); 
             cout.rdbuf(arquivoSaida.rdbuf());
-            floresta->espalharFogo(config.getVento());
+            floresta->espalharFogo(config.getCima(), config.getBaixo(), config.getEsquerda(), config.getDireita());
             cout.rdbuf(originalCoutBuffer);
             iteracao++;
         }

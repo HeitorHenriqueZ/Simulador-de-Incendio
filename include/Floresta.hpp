@@ -34,7 +34,7 @@ class Floresta
     int getPY();
     void setPY(int j);
     vector<std::vector<int>> getMatriz();
-    void espalharFogo(char vento);
+    void espalharFogo(char cima, char baixo, char esquerda, char direita);
     bool temFogo();
     vector<std::vector<bool>> getVisitados();
     void setVisitados(vector<std::vector<bool>> visitados);
