@@ -302,13 +302,79 @@ Floresta::Floresta(int linhas, int colunas, int posicaoInicialFX,int posicaoInic
 
 ---
 
-### `moverAnimal()`
+### `andarAnimal()`
 
 <details>
   <summary><strong>Mostrar Funcoes.cpp</strong></summary>
 
 ```cpp
+void Floresta::andarAnimal() 
+{
+    if (!vivo) return;
 
+    vector<pair<int, int>> direcoes = {{-1,0}, {1,0}, {0,-1}, {0,1}};
+
+    auto buscarOpcoes = [&](int valorAlvo) 
+    {
+        vector<pair<int, int>> naoVisitadas, visitadas;
+        for (auto& dir : direcoes) 
+        {
+            int x = animalX + dir.first;
+            int y = animalY + dir.second;
+            if (x >= 0 && x < linhas && y >= 0 && y < colunas && matriz[x][y] == valorAlvo) 
+            {
+                if (!visitados[x][y]) naoVisitadas.push_back({x, y});
+                else visitadas.push_back({x, y});
+            }
+        }
+        return !naoVisitadas.empty() ? naoVisitadas : visitadas;
+    };
+
+    vector<pair<int, int>> opcoes;
+
+    
+    opcoes = buscarOpcoes(4);
+    if (opcoes.empty()) 
+    {
+        
+        opcoes = buscarOpcoes(0);
+    }
+    if (opcoes.empty()) 
+    {
+        
+        opcoes = buscarOpcoes(1);
+    }
+    if (opcoes.empty()) 
+    {
+        opcoes = buscarOpcoes(3);
+    }
+
+    if (!opcoes.empty()) 
+    {
+        // Move para a primeira opção válida 
+        animalX = opcoes[0].first;
+        animalY = opcoes[0].second;
+        visitados[animalX][animalY] = true; // Marca nova posição como visitada
+        passos++;
+
+        // Lógica de água 
+        if (matriz[animalX][animalY] == 4) 
+        {
+            encontrouAgua++;
+            matriz[animalX][animalY] = 0;
+            // Atualiza adjacentes
+            if (animalX - 1 >= 0) matriz[animalX - 1][animalY] = 1;
+            if (animalX + 1 < linhas) matriz[animalX + 1][animalY] = 1;
+            if (animalY - 1 >= 0) matriz[animalX][animalY - 1] = 1;
+            if (animalY + 1 < colunas) matriz[animalX][animalY + 1] = 1;
+        }
+    } 
+    else 
+    {
+        vivo = false;
+        iteracaoPreso = passos;
+    }
+}
 ```
 </details>
 
