@@ -386,35 +386,95 @@ void Floresta::andarAnimal()
 
 ### `propagarFogo()`
 
+<details>
+  <summary><strong>Mostrar Funcoes.cpp</strong></summary>
+
 ```cpp
-void Floresta::propagarFogo() {
-    matrizProxima = matriz;
-    for (int i = 0; i < linhas; ++i)
-      for (int j = 0; j < colunas; ++j)
-        if (matriz[i][j] == 2) {
-          matrizProxima[i][j] = 3;
-          std::vector<std::pair<int,int>> dirs;
-          if (Config::Vento[0]) dirs.emplace_back(-1,0);
-          if (Config::Vento[1]) dirs.emplace_back( 1,0);
-          if (Config::Vento[2]) dirs.emplace_back( 0,-1);
-          if (Config::Vento[3]) dirs.emplace_back( 0, 1);
-          for (auto& d : dirs) {
-            int x = i + d.first, y = j + d.second;
-            if (x>=0&&x<linhas&&y>=0&&y<colunas&&matriz[x][y]==1) {
-              matrizProxima[x][y] = 2;
-              // grava log de propagação
-              logs.push_back("(" + std::to_string(x) + "," +
-                             std::to_string(y) + ") vira 2");
+void Floresta::espalharFogo(char vento)
+{
+    vector<vector<int>> novaMatriz = matriz; // cópia temporária para evitar propagação incorreta
+
+    for (int i = 0; i < linhas; i++) 
+    {
+        for (int j = 0; j < colunas; j++) 
+        {
+            if (matriz[i][j] == 2) 
+            {
+                // Sem vento
+                if (vento == '0') 
+                {
+                    if (i + 1 < linhas && matriz[i + 1][j] == 1) 
+                    {
+                        novaMatriz[i + 1][j] = 2;
+                        cout << "(" << i + 1 << "," << j << ") vira 2 (abaixo)" << endl;
+                    }
+                    if (i - 1 >= 0 && matriz[i - 1][j] == 1) 
+                    {
+                        novaMatriz[i - 1][j] = 2;
+                        cout << "(" << i - 1 << "," << j << ") vira 2 (acima)" << endl;
+                    }
+                    if (j + 1 < colunas && matriz[i][j + 1] == 1) 
+                    {
+                        novaMatriz[i][j + 1] = 2;
+                        cout << "(" << i << "," << j + 1 << ") vira 2 (direita)" << endl;
+                    }
+                    if (j - 1 >= 0 && matriz[i][j - 1] == 1) 
+                    {
+                        novaMatriz[i][j - 1] = 2;
+                        cout << "(" << i << "," << j - 1 << ") vira 2 (esquerda)" << endl;
+                    }
+                }
+                // Vento para cima
+                else if (vento == 'C') 
+                {
+                    if (i - 1 >= 0 && matriz[i - 1][j] == 1) 
+                    {
+                        novaMatriz[i - 1][j] = 2;
+                        cout << "(" << i - 1 << "," << j << ") vira 2 (acima)" << endl;
+                    }
+                }
+                // Vento para baixo
+                else if (vento == 'B') 
+                {
+                    if (i + 1 < linhas && matriz[i + 1][j] == 1) 
+                    {
+                        novaMatriz[i + 1][j] = 2;
+                        cout << "(" << i + 1 << "," << j << ") vira 2 (abaixo)" << endl;
+                    }
+                }
+                // Vento para esquerda
+                else if (vento == 'E') 
+                {
+                    if (j - 1 >= 0 && matriz[i][j - 1] == 1) 
+                    {
+                        novaMatriz[i][j - 1] = 2;
+                        cout << "(" << i << "," << j - 1 << ") vira 2 (esquerda)" << endl;
+                    }
+                }
+                // Vento para direita
+                else if (vento == 'D') 
+                {
+                    if (j + 1 < colunas && matriz[i][j + 1] == 1) 
+                    {
+                        novaMatriz[i][j + 1] = 2;
+                        cout << "(" << i << "," << j + 1 << ") vira 2 (direita)" << endl;
+                    }
+                }
+
+                // A árvore atual em chamas vira queimada
+                novaMatriz[i][j] = 3;
             }
-          }
         }
-    matriz = matrizProxima;
+    }
+
+    // Atualiza a matriz real
+    matriz = novaMatriz;
 }
 ```
- 
-- Vetor de direções condicionado em `Config::Vento` torna a propagação parametrizável.  
-- Matriz auxiliar mantém integridade dos estados.
+ </details>
 
+ - Espalha o fogo de acordo com a direcao do vento definida no 'config.hpp'.
+ - Utiliza uma matriz auxiliar para nao espalhar o fogo indefinidamente.
 ---
 
 ### `executarIteracao(int iter)`
