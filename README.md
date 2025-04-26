@@ -283,7 +283,6 @@ void Funcoes::printFinal(int iteracao, int passos, int vivo)
 
 - `matriz` e `visitados` : Armazena a matriz  e os lugares visitados pelo animal.
 - `posicaoInicialFX` e `PosicaoInicialFY` : Armazena o foco inicial do incendio.
-- `posicaoInicialAX` e `PosicaoInicialAY` : Armazena a posicao inicial do animal.
 - `animalX` e `animalY` : Armazena a posicao atual do animal.
 
 ### Construtor
