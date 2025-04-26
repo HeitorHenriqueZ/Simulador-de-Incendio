@@ -622,11 +622,9 @@ Se depois do fogo ser espalhado por `espalharFogo()` o animal estiver em uma cel
 ```
 
 **output.dat (resumo)**
-- Fogo se propaga em todas as direções ortogonais.
-- Animal inicia em (3,0), movimenta-se até (4,1), encontra água e transforma vizinhos.
-- Simulação encerra após 6 iterações.
-- Passos: 2 | Água encontrada: 1 | Sobreviveu: Sim
-
+- O fogo se propaga em todas as direcoes.
+- O animal comeca em (3,0).
+- - Da 2 passos em um total de 6 interacoes e termina vivo.
 <details>
   <summary><strong>Mostrar output.dat completo</strong></summary>
 
