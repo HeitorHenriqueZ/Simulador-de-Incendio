@@ -16,8 +16,6 @@ class Floresta
     int colunas;
     int posicaoInicialFX;
     int posicaoInicialFY;
-    int posicaoInicialAX;
-    int posicaoInicialAY;
     vector<std::vector<int>> matriz;
     vector<std::vector<bool>> visitados;
     int animalX, animalY;
