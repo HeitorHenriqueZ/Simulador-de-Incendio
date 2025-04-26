@@ -287,7 +287,7 @@ void Funcoes::printFinal(int iteracao, int passos, int vivo)
 
 ### Construtor
 <details>
-  <summary><strong>Mostrar Funcoes.cpp</strong></summary>
+  <summary><strong>Mostrar construtor </strong></summary>
 
 ```cpp
 Floresta::Floresta(int linhas, int colunas, int posicaoInicialFX,int posicaoInicialFY, vector<std::vector<int>> matriz, vector<std::vector<bool>>& visitados)
@@ -313,7 +313,7 @@ Floresta::Floresta(int linhas, int colunas, int posicaoInicialFX,int posicaoInic
 ### `andarAnimal()`
 
 <details>
-  <summary><strong>Mostrar Funcoes.cpp</strong></summary>
+  <summary><strong>Mostrar andarAnimal()</strong></summary>
 
 ```cpp
 void Floresta::andarAnimal() 
@@ -392,10 +392,10 @@ void Floresta::andarAnimal()
 
 ---
 
-### `propagarFogo()`
+### `espalharFogo()`
 
 <details>
-  <summary><strong>Mostrar Funcoes.cpp</strong></summary>
+  <summary><strong>Mostrar espalharFogo()</strong></summary>
 
 ```cpp
 void Floresta::espalharFogo(char vento)
@@ -488,7 +488,7 @@ void Floresta::espalharFogo(char vento)
 ## Loop Principal (`main.cpp`)
 
 <details>
-  <summary><strong>Mostrar Funcoes.cpp</strong></summary>
+  <summary><strong>Mostrar main.cpp</strong></summary>
 
 ```cpp
 int main()
