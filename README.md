@@ -559,21 +559,18 @@ int main()
 include/
   Config.hpp
   Floresta.hpp
-  LerArquivo.hpp
+  Funcoes.hpp
 
 src/
+  Config.cpp
   Floresta.cpp
-  LerArquivo.cpp
+  Funcoes.cpp
   main.cpp
 
 data/
   input.dat
-  output.dat
-
-INPUTS TESTES/ (Varios testes realizados)
-  input.dat
-  output.dat
-
+  
+output.dat
 Makefile
 ```
 
@@ -581,16 +578,16 @@ Makefile
 
 ## Movimentação do Animal
 
-1. **Água (4):** prioridade máxima — reseta célula para 0 e umidifica vizinhas.  
-2. **Seguro (0 ou 1):** movimento intercalado; espera até 3 iterações em 0 para estabilidade.  
+1. **Água (4):** prioridade máxima — reseta célula para 0 e torna as celulas ao redor 1.  
+2. **Seguro (0 ou 1):** prioriza o 0 depois o 1, ambas mantem o animal seguro,porem a celula 1 queima; espera até 3 iterações em 0 para estabilidade.  
 3. **Queimado (3):** última opção, caso não haja mais alternativas.  
-4. **Impossibilitado:** `animalVivo = false`, registra `iteracaoPreso`.
+4. **Impossibilitado:** Qualquer outro caso o animal sera marcado como morto`Vivo`=false.
 
 ---
 
 ## Segunda Chance
 
-Se após `propagarFogo()` o animal estiver em célula com valor `2`, chama `moverAnimal()` outra vez para que ele possa escapar, mas apenas se houver vizinhos válidos.
+Se depois do fogo ser espalhado por `espalharFogo()` o animal estiver em uma celula marcado como `2`, sera acionada a segunda chance , ou seeja, faz o animal se mover denovo `andarAnimal()`, e caso ainda assim estar em uma celula marcada como 2, ele sera marcado como morto.
 
 ---
 

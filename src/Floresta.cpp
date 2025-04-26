@@ -258,14 +258,14 @@ bool Floresta::segundaChance()
     int yAnimal = getAnimalY();
     int estadoCelula = matriz[xAnimal][yAnimal];
 
-    if (estadoCelula == 2 || estadoCelula == 3) 
+    if (estadoCelula == 2 ) 
     {
         andarAnimal(); // Segunda tentativa
         xAnimal = getAnimalX();
         yAnimal = getAnimalY();
         estadoCelula = matriz[xAnimal][yAnimal];
 
-        if (estadoCelula == 2 || estadoCelula == 3) 
+        if (estadoCelula == 2) 
         {
             vivo = false;
             return false; // Indica que o animal está preso
