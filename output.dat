@@ -1,0 +1,99 @@
+=== Iteração 0 ===
+
+Posição do animal: (3,1)
+1 1 1 1 4 
+1 2 1 1 1 
+1 1 1 1 4 
+0 A 1 1 1 
+1 4 1 0 4 
+
+Animal descansando
+(2,1) vira 2 (abaixo)
+(0,1) vira 2 (acima)
+(1,2) vira 2 (direita)
+(1,0) vira 2 (esquerda)
+1 2 1 1 4 
+2 3 2 1 1 
+1 2 1 1 4 
+0 A 1 1 1 
+1 4 1 0 4 
+
+Animal descansando
+(0,2) vira 2 (direita)
+(0,0) vira 2 (esquerda)
+(2,0) vira 2 (abaixo)
+(0,0) vira 2 (acima)
+(2,2) vira 2 (abaixo)
+(0,2) vira 2 (acima)
+(1,3) vira 2 (direita)
+(2,2) vira 2 (direita)
+(2,0) vira 2 (esquerda)
+2 3 2 1 4 
+3 3 3 2 1 
+2 3 2 1 4 
+0 A 1 1 1 
+1 4 1 0 4 
+
+Animal descansando
+(0,3) vira 2 (direita)
+(2,3) vira 2 (abaixo)
+(0,3) vira 2 (acima)
+(1,4) vira 2 (direita)
+(3,2) vira 2 (abaixo)
+(2,3) vira 2 (direita)
+3 3 3 2 4 
+3 3 3 3 2 
+3 3 3 2 4 
+0 A 2 1 1 
+1 4 1 0 4 
+
+3 3 3 2 4 
+3 3 3 3 2 
+3 3 3 2 4 
+0 A 2 1 1 
+1 4 1 0 4 
+
+=== Iteração 3 ===
+
+Posição do animal: (4,1)
+3 3 3 2 4 
+3 3 3 3 2 
+3 3 3 2 4 
+0 1 2 1 1 
+1 A 1 0 4 
+
+Animal descansando
+(3,3) vira 2 (abaixo)
+(4,2) vira 2 (abaixo)
+(3,3) vira 2 (direita)
+(3,1) vira 2 (esquerda)
+3 3 3 3 4 
+3 3 3 3 3 
+3 3 3 3 4 
+0 2 3 2 1 
+1 A 2 0 4 
+
+Animal descansando
+(3,4) vira 2 (direita)
+3 3 3 3 4 
+3 3 3 3 3 
+3 3 3 3 4 
+0 3 3 3 2 
+1 A 3 0 4 
+
+Animal descansando
+3 3 3 3 4 
+3 3 3 3 3 
+3 3 3 3 4 
+0 3 3 3 3 
+1 A 3 0 4 
+
+3 3 3 3 4 
+3 3 3 3 3 
+3 3 3 3 4 
+0 3 3 3 3 
+1 A 3 0 4 
+
+Passos:2
+Interacoes:6
+Estado do animal: Vivo

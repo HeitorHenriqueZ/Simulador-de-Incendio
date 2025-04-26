@@ -1,0 +1,98 @@
+Principios Básicos:
+Tamanho minimo da Matriz: 100x100
+
+	 0 → Área vazia (não queima)
+	- 1 → Árvore saudável
+	- 2 → Árvore em chamas
+	- 3 → Árvore queimada (não propaga mais fogo, árvore          totalmente queimada)
+	- 4 → Presença de água
+	
+FOGO:
+
+	1. Uma árvore saudável (valor 1) entra em chamas (valor 2) se houver ao menos uma árvore
+	vizinha em chamas (valor 2).
+	
+	2. Uma árvore em chamas (valor 2) se torna queimada (valor 3) após um ciclo de simulação
+	e, a partir desse momento, não propagará mais o fogo.
+	
+	3. A propagação do fogo ocorre exclusivamente nas direções ortogonais (esquerda, direita,
+	acima e abaixo). A simulação deve considerar dois estados de propagação do fogo:
+	(a) Sem influência do vento: o fogo se propaga linearmente nas quatro direções ortog-
+	onais.
+	(b) Com influência do vento: o fogo se propaga apenas em direções ortogonais especí-
+	ficas, que devem ser configuradas no arquivo config.h. O vento pode ser configu-
+	rado para direcionar o fogo para uma ou mais direções (esquerda, direita, acima ou
+	abaixo).
+	
+	4. O processo de propagação do incêndio continua até que não haja mais árvores em
+	chamas (valor 2) ou que o número máximo de interações, K, seja alcançado.
+	
+->Pode ter a influência do  vento ou não ,  dependendo da especificacao no config. Lembrar de especificar as direções do vento na config.
+
+VENTO:
+
+	a) Sem influência do vento: o fogo se propaga linearmente nas quatro direções ortog-
+onais.
+
+	(b) Com influência do vento: o fogo se propaga apenas em direções ortogonais especí-
+ficas, que devem ser configuradas no arquivo config.h. O vento pode ser configu-
+rado para direcionar o fogo para uma ou mais direções (esquerda, direita, acima ou
+abaixo).
+
+Termino da Execução:
+
+O processo de propagação do incêndio continua até que não haja mais árvores em
+chamas (valor 2) ou que o número máximo de interações, K, seja alcançado.
+ARQUIVO:
+
+->Fazer a leitura do arquivo inpute e o output tbm de forma correta:
+
+	Exemplo de entrada (input.dat):
+	
+	5 5 1 1
+	1 1 1 1 4
+	1 2 1 1 1
+	1 1 1 1 4
+	0 0 1 1 1
+	1 4 1 0 4
+	
+	Saída (output.dat) após a primeira iteração:
+	
+	• (0,1) vira 2 (acima)
+	• (2,1) vira 2 (abaixo)
+	• (1,0) vira 2 (esquerda)
+	• (1,2) vira 2 (direita)
+	
+	Iteração 1:
+	
+	1 2 1 1 4
+	2 2 2 1 1
+	1 2 1 1 4
+	0 0 1 1 1
+	1 4 1 0 4
+	
+Movimentação do Animal:
+
+A movimentação do animal na floresta segue as regras abaixo:
+
+	1. O animal, quando localizado em uma posição segura (valor 1 ou 0), deve procurar uma
+	nova posição segura nas direções ortogonais. As posições seguras são classificadas da
+	seguinte forma:
+	
+		(a) Melhor opção: posição com valor 4 (presença de água)
+		(b) Opções intermediárias: posição com valor 0 (área vazia) e posição com valor 1 (ár-
+		vore saudável).
+		(c) Pior opção: posição com valor 3 (árvore queimada).
+		
+	2. A posição do animal deve ser representada por uma variável externa à matriz, permitindo
+	o seu acompanhamento ao longo da simulação.
+	
+	3. Caso o animal se encontre em uma posição segura (valor 0), ele poderá permanecer
+	nesta posição por até 3 interações, uma vez que tal posição não será afetada pela propa-
+	gação do incêndio.
+	
+	4. Quando o animal alcançar uma posição contendo água, essa célula deverá ser atualizada
+	para o estado seguro (valor 0). Além disso, todas as posições ortogonalmente adjacentes
+	deverão ser convertidas para o valor 1, simulando a dispersão da umidade e sua influência
+	no controle da propagação do incêndio.
+	
