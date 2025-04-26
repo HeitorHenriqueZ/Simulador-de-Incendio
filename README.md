@@ -7,7 +7,12 @@
 ---
 
 ## Introdução
-    Este trabalho exemplifica a propagacao de um incendio em uma  floresta, levando em consideracao a direcao do vento e tambem possui a simulacao de um animal fugindo fogo . 
+
+Este trabalho exemplifica a propagacao de um incendio em uma  floresta, levando em consideracao a direcao do vento e tambem possui a simulacao de um animal fugindo fogo. 
+
+
+<img src="Floresta.jpg"/>
+
 ---
 
 ## **Objetivo**  
