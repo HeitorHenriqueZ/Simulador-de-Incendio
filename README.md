@@ -477,50 +477,79 @@ void Floresta::espalharFogo(char vento)
  - Utiliza uma matriz auxiliar para nao espalhar o fogo indefinidamente.
 ---
 
-### `executarIteracao(int iter)`
-
-```cpp
-void Floresta::executarIteracao(int iter) {
-    iteracaoAtual = iter;
-    logs.clear();
-    logs.push_back("Animal em: (" + std::to_string(animal.x) +
-                   "," + std::to_string(animal.y) + ")");
-    moverAnimal();
-    propagarFogo();
-    if (matriz[animal.x][animal.y] == 2) moverAnimal();  // segunda chance
-}
-```
-
----
-
 ## Loop Principal (`main.cpp`)
 
+<details>
+  <summary><strong>Mostrar Funcoes.cpp</strong></summary>
+
 ```cpp
-int main() {
-    std::ifstream fin("data/input.dat");
-    std::ofstream fout("data/output.dat");
-    int n,m,fr,fc;
-    fin >> n >> m >> fr >> fc;
-    auto mat = lerArquivo(fin, n, m);
-    Floresta f(n,m,fr,fc,mat);
-    int it = 1;
-    while (!f.terminou() && it <= Config::MaxIteracoes) {
-      f.executarIteracao(it);
-      if (Config::exibirNoConsole) {
-        // imprime logs e matriz com 'A'
-      }
-      for (auto& log : f.getLogs()) fout << log << "\n";
-      // escreve matriz e 'A' em fout
-      ++it;
+int main()
+{
+    Funcoes funcoes;
+    Config config;
+    funcoes.lerArquivo();
+    Floresta* floresta = new Floresta(funcoes.getLinhas(), funcoes.getColunas(), funcoes.getPX(), funcoes.getPY(), funcoes.getMatriz(),funcoes.getVisitados());
+    string nomeArquivo="output.dat";
+
+    ofstream arquivoSaida(nomeArquivo);
+
+    if (!arquivoSaida.is_open()) 
+    {
+        cerr << "Erro ao abrir o arquivo de saída!" << endl;
+        return 1;
     }
-    // estatísticas finais
-    fout << "Passos: "        << f.getPassosAnimal()   << "\n"
-         << "Água encontrada: "<< f.getAguaEncontrada() << "\n"
-         << "Sobreviveu: "     << (f.estaAnimalVivo() ? "Sim":"Não") << "\n";
-    if (!f.estaAnimalVivo())
-      fout << "Iteração preso: " << f.getIteracaoPreso() << "\n";
+
+    streambuf* coutBuffer = cout.rdbuf();
+    cout.rdbuf(arquivoSaida.rdbuf());
+
+    floresta->acharPosicaoInicial();
+    int iteracao = 0;
+    while (floresta->temFogo() && iteracao < config.getInteracoes()) 
+    {
+        arquivoSaida << "=== Iteração " << iteracao << " ===" << endl;
+
+        
+        floresta->andarAnimal();
+        arquivoSaida << "\nPosição do animal: (" << floresta->getAnimalX() << "," << floresta->getAnimalY() << ")\n";
+        funcoes.printArquivoComAnimal(floresta->getMatriz(), floresta->getAnimalX(), floresta->getAnimalY(), arquivoSaida);
+        if(floresta->getMatriz()[floresta->getAnimalX()][floresta->getAnimalY()] == 0)
+        {
+            for(int i=0;i<3;i++)
+            {                
+                cout<<"Animal descansando"<<endl;
+                floresta->espalharFogo(config.getVento());
+                funcoes.printArquivoComAnimal(floresta->getMatriz(), floresta->getAnimalX(), floresta->getAnimalY(), arquivoSaida);
+                iteracao++;
+            }
+        }
+        else
+        {
+            streambuf* originalCoutBuffer = cout.rdbuf(); 
+            cout.rdbuf(arquivoSaida.rdbuf());
+            floresta->espalharFogo(config.getVento());
+            cout.rdbuf(originalCoutBuffer);
+            iteracao++;
+        }
+        
+        if (!floresta->segundaChance()) 
+        {
+            arquivoSaida << "[FIM] Animal preso na iteração " << iteracao << endl;
+            break;
+        }
+                
+        funcoes.printArquivoComAnimal(floresta->getMatriz(), floresta->getAnimalX(), floresta->getAnimalY(), arquivoSaida);
+
+    }
+    funcoes.printFinal(iteracao,floresta->getPassos(), floresta->getVivo());
+    cout.rdbuf(coutBuffer);
+    arquivoSaida.close();
+    delete floresta;
+    return 0;
 }
 ```
+</details>
+
+- Determina as interacoes e faz com que o animal fique 3 interacoes parado em pontos seguros '0'.
 
 ---
 
