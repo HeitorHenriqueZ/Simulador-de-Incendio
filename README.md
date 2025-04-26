@@ -623,7 +623,7 @@ Se depois do fogo ser espalhado por `espalharFogo()` o animal estiver em uma cel
 **output.dat (resumo)**
 - O fogo se propaga em todas as direcoes.
 - O animal comeca em (3,0).
-- - Da 2 passos em um total de 6 interacoes e termina vivo.
+- Da 2 passos em um total de 6 interacoes e termina vivo.
 <details>
   <summary><strong>Mostrar output.dat completo</strong></summary>
 
@@ -837,6 +837,7 @@ Estado do animal: Vivo
 ```
 
 **output.dat (resumo)**
+- O animal comeca no (3,0).
 - Da 4 passos em um total de 8 interacoes e termina vivo.
 - Animal termina com apenas opcoees terriveis para se mover.
 <details>
@@ -975,7 +976,7 @@ Estado do animal: Vivo
 
 **output.dat (resumo)**
 - Demonstra o limite de interacoes definido no config.hpp.
-- Da 4 passos em um total de 8 interacoes e termina vivo.
+- Da 2 passos em um total de 3 interacoes e termina vivo.
 
 <details>
   <summary><strong>Mostrar output.dat completo</strong></summary>
