@@ -36,7 +36,11 @@ int main()
         if(floresta->getMatriz()[floresta->getAnimalX()][floresta->getAnimalY()] == 0)
         {
             for(int i=0;i<3;i++)
-            {                
+            {    
+                if(iteracao == config.getInteracoes())
+                {
+                    break;
+                }            
                 cout<<"Animal descansando"<<endl;
                 floresta->espalharFogo(config.getCima(), config.getBaixo(), config.getEsquerda(), config.getDireita());
                 funcoes.printArquivoComAnimal(floresta->getMatriz(), floresta->getAnimalX(), floresta->getAnimalY(), arquivoSaida);

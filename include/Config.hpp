@@ -12,7 +12,7 @@ class Config
 {
     private:
 
-    int interacoes=1000;
+    int interacoes=3;
     char direita='0';
     char esquerda='0';
     char baixo='0';
