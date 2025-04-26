@@ -1146,4 +1146,4 @@ make run
 
 ## Autor
 
-- Kairo Henrique Ferreira Martins
+- Heitor Henrique Zonho
