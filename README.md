@@ -51,7 +51,11 @@ Em cada ciclo:
 2. vrificar se o animal esta numa celula segura.
 3. `espalharFogo()`
 4. se o animal ficou em célula em chamas, chamar `andaranimal()` denovo.
+<details> 
+  <summary><strong>Clique para ver o Fluxograma</strong></summary>
 
+<img src="https://www.mermaidchart.com/raw/98537a06-5785-48ef-b91c-28aa9c3628b3?theme=light&version=v0.1&format=svg"/>
+  </details>
 ---
 
 ## Arquivo de Configuração (`Config.hpp`)
